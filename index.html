@@ -30,20 +30,21 @@
                         <button id="searchBtn" class="btn btn-outline-secondary" type="button">Search</button>
                     </div>
                 </div>
+                <ul id="city-list" class="list-group list-group-flush">
+                </ul>
             </div>
 
             <div class="col-9">
                 <div class="card">
                     <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                     <div class="card-body">
-                        <h5 class="card-title">City</h5>
-                        <p class="card-text">weather icon goes somewhere here</p>
+                        <h5 class="card-title"><span id="cityName"></span> <span class="date"></span> <span id="icon"></span></h5>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Temperature: </li>
-                        <li class="list-group-item">Humidity: </li>
-                        <li class="list-group-item">Wind Speed: </li>
-                        <li class="list-group-item">UV Index: </li>
+                        <li id="temp" class="list-group-item">Temperature:</li>
+                        <li id="humid" class="list-group-item">Humidity: </li>
+                        <li id="wind" class="list-group-item">Wind Speed: </li>
+                        <li id="uv" class="list-group-item">UV Index: </li>
                     </ul>
                 </div>
             </div>
@@ -53,13 +54,6 @@
     <div class="container">
         <div class="row">
             <div class="col-3">
-                <ul class="list-group list-group-flush">
-                    <!-- <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li> -->
-                </ul>
             </div>
             
             <div class="col-9">
@@ -72,24 +66,11 @@
                         <div class="card">
                             <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                             <div class="card-body">
-                                <h5 class="card-title">Date</h5>
+                                <h5 id="date1" class="card-title"></h5>
 
-                                <li class="list-group-item">Icon: </li>
-                                <li class="list-group-item">Temperature: </li>
-                                <li class="list-group-item">Humidity: </li>
-
-                                <p class="card-text mt-3"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-                            <div class="card-body">
-                                <h5 class="card-title">Date</h5>
-
-                                <li class="list-group-item">Icon: </li>
-                                <li class="list-group-item">Temperature: </li>
-                                <li class="list-group-item">Humidity: </li>
+                                <li id="icon1" class="list-group-item">Icon: </li>
+                                <li id="temp1" class="list-group-item">Temperature: </li>
+                                <li id="humid1" class="list-group-item">Humidity: </li>
 
                                 <p class="card-text mt-3"><small class="text-muted">Last updated 3 mins ago</small></p>
                             </div>
@@ -98,25 +79,24 @@
                         <div class="card">
                             <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                             <div class="card-body">
-                                <h5 class="card-title">Date</h5>
+                                <h5 id="date2" class="card-title"></h5>
 
-                                <li class="list-group-item">Icon: </li>
-                                <li class="list-group-item">Temperature: </li>
-                                <li class="list-group-item">Humidity: </li>
+                                <li id="icon2" class="list-group-item">Icon: </li>
+                                <li id="temp2" class="list-group-item">Temperature: </li>
+                                <li id="humid2" class="list-group-item">Humidity: </li>
 
                                 <p class="card-text mt-3"><small class="text-muted">Last updated 3 mins ago</small></p>
                             </div>
                         </div>
 
-
                         <div class="card">
                             <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                             <div class="card-body">
-                                <h5 class="card-title">Date</h5>
+                                <h5 id="date3" class="card-title"></h5>
 
-                                <li class="list-group-item">Icon: </li>
-                                <li class="list-group-item">Temperature: </li>
-                                <li class="list-group-item">Humidity: </li>
+                                <li id="icon3" class="list-group-item">Icon: </li>
+                                <li id="temp3" class="list-group-item">Temperature: </li>
+                                <li id="humid3" class="list-group-item">Humidity: </li>
 
                                 <p class="card-text mt-3"><small class="text-muted">Last updated 3 mins ago</small></p>
                             </div>
@@ -126,11 +106,25 @@
                         <div class="card">
                             <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                             <div class="card-body">
-                                <h5 class="card-title">Date</h5>
+                                <h5 id="date4" class="card-title"></h5>
 
-                                <li class="list-group-item">Icon: </li>
-                                <li class="list-group-item">Temperature: </li>
-                                <li class="list-group-item">Humidity: </li>
+                                <li id="icon4" class="list-group-item">Icon: </li>
+                                <li id="temp4" class="list-group-item">Temperature: </li>
+                                <li id="humid4" class="list-group-item">Humidity: </li>
+
+                                <p class="card-text mt-3"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+
+
+                        <div class="card">
+                            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                            <div class="card-body">
+                                <h5 id="date5" class="card-title"></h5>
+
+                                <li id="icon5" class="list-group-item">Icon: </li>
+                                <li id="temp5" class="list-group-item">Temperature: </li>
+                                <li id="humid5" class="list-group-item">Humidity: </li>
 
                                 <p class="card-text mt-3"><small class="text-muted">Last updated 3 mins ago</small></p>
                             </div>
@@ -146,6 +140,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script defer src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 </body>
 </html>
