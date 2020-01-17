@@ -1,16 +1,17 @@
 var currentDate = moment().format('L');
 var API_KEY = "&appid=86945d052a2d837006278947c1238951";
-var cities = JSON.parse(localStorage.getItem('cities')) || []
+var cities = JSON.parse(localStorage.getItem('cities')) || [];
 // console.log(cities)
-
-
 
 //if enter is pressed by user trigger the on(click) function
 $("#search-input").keyup(function(event) {
+
     // Number 13 is the "Enter" key on the keyboard
     if (event.keyCode === 13) {
+
         // Cancel the default action, if needed
         event.preventDefault();
+
         // Trigger the button element with a click
         $("#searchBtn").click();
     }
@@ -30,20 +31,20 @@ $("#searchBtn").on("click", function () {
     $(".date").text(currentDate);
     var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=";
     var uvURL = "http://api.openweathermap.org/data/2.5/uvi?";
+
+    //create a var that will hold units parameter to get rid of default Kelvin
     var unitsURL = "&units=imperial";
     
     // // Grab text the user typed into the search input
     var QUERY = $("#search-input").val().trim();
     
-    // push new search inputs into the JSON.parsed array
-    cities.push(QUERY)
+//LS: unshift method is used (instead of push) for each new search inputs to insure that new input is added from the top and not the buttom of the UL
+    cities.unshift(QUERY);
     // console.log(cities)
     
-    // set and stringify cities input
+//LS: set and stringify cities input
     localStorage.setItem("cities", JSON.stringify(cities))
-    
-    //create a var that will hold units parameter to get rid of default Kelvin
-    
+    saveSearch();
     
     //ajax call to update first 3 weather conditions
     
@@ -54,10 +55,10 @@ $("#searchBtn").on("click", function () {
         
         // UPDATE MAIN WEATHER CARD
         // console.log(weatherRes);
-        $("#cityName").append(weatherRes.name);
-        $("#temp").append(weatherRes.main.temp);
-        $("#humid").append(weatherRes.main.humidity);
-        $("#wind").append(weatherRes.wind.speed);
+        $("#cityName").html(weatherRes.name);
+        $("#temp").html(weatherRes.main.temp);
+        $("#humid").html(weatherRes.main.humidity);
+        $("#wind").html(weatherRes.wind.speed);
         
         //ajax call to get the UV info
         $.ajax({
@@ -65,7 +66,7 @@ $("#searchBtn").on("click", function () {
             method: "GET"
         }).then(function (uvRes) {
             
-            // UPDATE UV INDEX FOR MAIN WEATHER CARD
+        // UPDATE UV INDEX FOR MAIN WEATHER CARD
             $("#uv").append(uvRes.value);
             // console.log(uvRes);
         });
@@ -73,83 +74,106 @@ $("#searchBtn").on("click", function () {
         var iconPath = weatherRes.weather[0].icon;
         var iconURL = "https://openweathermap.org/img/wn/"+ iconPath + "@2x.png";
 
-        $.ajax({
-            url: iconURL,
-            method: "GET"
-        }).then(function (iconRes) {
-            
-            var IMG1 = $("img")
-            IMG1.append(iconRes)
-            $("#icon").append(IMG1);
-            console.log(IMG1)
-        }); 
+        // UPDATE ICON FOR MAIN WEATHER CARD
+            var IMG1 = $("<img>");
+            IMG1.attr("src", iconURL);
+            $("#icon").html(IMG1);
     });
-    
 
     var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=";
 
-     // ajax call to get 5-day forecast
+    // ajax call to get 5-day forecast data
     $.ajax({
         url: forecastURL + QUERY + unitsURL + API_KEY,
         method: "GET"
     }).then(function (forecastRes) {
 
         // UPDATE FORECAST CARDS
-        console.log(forecastRes); 
+        // console.log(forecastRes); 
+
+    //DAY 1
         var dateOne = moment().add(1, 'days').format('L');      
         $("#date1").append(dateOne);
 
-        // $("#icon1").append(forecastRes.list[2].weaher[0].icon);
-        $("#temp1").append(forecastRes.list[2].main.temp);
-        $("#humid1").append(forecastRes.list[2].main.humidity);
+        var icon5dayPath1 = forecastRes.list[2].weather[0].icon;
+        var icon5dayURL1 = "https://openweathermap.org/img/wn/"+ icon5dayPath1 + "@2x.png";
 
-        var dateTwo = moment().add(2, 'days').format('L');      
+        var iconDay1 = $("<img>");
+        iconDay1.attr("src", icon5dayURL1);
+        $("#icon1").html(iconDay1);
+
+        $("#temp1").html(forecastRes.list[2].main.temp);
+        $("#humid1").html(forecastRes.list[2].main.humidity);
+
+    //DAY 2
+        var dateTwo = moment().add(2, 'days').format('L');
         $("#date2").append(dateTwo);
-        // $("#icon1").append(forecastRes.list[2].weaher[0].icon);
-        $("#temp2").append(forecastRes.list[9].main.temp);
-        $("#humid2").append(forecastRes.list[9].main.humidity);
+        
+        var icon5dayPath2 = forecastRes.list[9].weather[0].icon;
+        var icon5dayURL2 = "https://openweathermap.org/img/wn/"+ icon5dayPath2 + "@2x.png";
 
+        var iconDay2 = $("<img>");
+        iconDay2.attr("src", icon5dayURL2);
+        $("#icon2").html(iconDay2);
+
+        $("#temp2").html(forecastRes.list[9].main.temp);
+        $("#humid2").html(forecastRes.list[9].main.humidity);
+
+    //DAY 3
         var dateThree = moment().add(3, 'days').format('L');      
         $("#date3").append(dateThree);
-        // $("#icon1").append(forecastRes.list[2].weaher[0].icon);
-        $("#temp3").append(forecastRes.list[17].main.temp);
-        $("#humid3").append(forecastRes.list[17].main.humidity);
-        
+
+        var icon5dayPath3 = forecastRes.list[17].weather[0].icon;
+        var icon5dayURL3 = "https://openweathermap.org/img/wn/"+ icon5dayPath3 + "@2x.png";
+
+        var iconDay3 = $("<img>");
+        iconDay3.attr("src", icon5dayURL3);
+        $("#icon3").html(iconDay3);
+
+        $("#temp3").html(forecastRes.list[17].main.temp);
+        $("#humid3").html(forecastRes.list[17].main.humidity);
+
+    //DAY 4
         var dateFour = moment().add(4, 'days').format('L');      
         $("#date4").append(dateFour);
-        // $("#icon1").append(forecastRes.list[2].weaher[0].icon);
-        $("#temp4").append(forecastRes.list[25].main.temp);
-        $("#humid4").append(forecastRes.list[25].main.humidity);
+        
+        var icon5dayPath4 = forecastRes.list[25].weather[0].icon;
+        var icon5dayURL4 = "https://openweathermap.org/img/wn/"+ icon5dayPath4 + "@2x.png";
 
+        var iconDay4 = $("<img>");
+        iconDay4.attr("src", icon5dayURL4);
+        $("#icon4").html(iconDay4);
+
+        $("#temp4").html(forecastRes.list[25].main.temp);
+        $("#humid4").html(forecastRes.list[25].main.humidity);
+
+    //DAY 5
         var dateFive = moment().add(5, 'days').format('L');      
         $("#date5").append(dateFive);
-        // $("#icon1").append(forecastRes.list[2].weaher[0].icon);
-        $("#temp5").append(forecastRes.list[33].main.temp);
-        $("#humid5").append(forecastRes.list[33].main.humidity);
+
+        var icon5dayPath5 = forecastRes.list[33].weather[0].icon;
+        var icon5dayURL5 = "https://openweathermap.org/img/wn/"+ icon5dayPath5 + "@2x.png";
+
+        var iconDay5 = $("<img>");
+        iconDay5.attr("src", icon5dayURL5);
+        $("#icon5").html(iconDay5);
+
+        $("#temp5").html(forecastRes.list[33].main.temp);
+        $("#humid5").html(forecastRes.list[33].main.humidity);
     }); 
 });
 
-
+// function to create a user search history and limit it to 5 to appear on the page
 function saveSearch() {
+
+    //clear the UL that will hold all ne <li> elements before appending
+    $("#city-list").empty();
     for (i = 0; i < cities.length; i++) {
       newCity = $("<li></li>").append(cities[i]).addClass("list-group-item");
       $("#city-list").append(newCity); 
+      cities = cities.slice(0,5);
+    }
 
-      clearText();
-    }
-    function clearText(){
-        search = $("#search-input");
-        if (this.defaultValue===this.value) {
-        search.value = "";
-        }
-    }
+    //clear user's input area
+    $("#search-input").val("");
   }
-
-// clear input after the data is retrieved
-    // $("#search-input").value("");
-
-    // $("#clear").click(function (e) {
-    //     e.preventDefault();
-    //     $("#scoreList").css('display', 'none');
-    //     localStorage.clear();
-    //   });
