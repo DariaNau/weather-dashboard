@@ -27,6 +27,17 @@ saveSearch();
 
 //on click function declaration - 4 ajax calls
 $("#searchBtn").on("click", function () {
+    var QUERY = $("#search-input").val().trim();
+    getData(QUERY)
+});
+
+function init() {
+    var query = localStorage.getItem('query') || 'Atlanta';
+    getData(query);
+}
+
+function getData (QUERY) {
+    localStorage.setItem('query', QUERY);
 
     $(".date").text(currentDate);
     var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=";
@@ -36,7 +47,6 @@ $("#searchBtn").on("click", function () {
     var unitsURL = "&units=imperial";
     
     // // Grab text the user typed into the search input
-    var QUERY = $("#search-input").val().trim();
     
 //LS: unshift method is used (instead of push) for each new search inputs to insure that new input is added from the top and not the buttom of the UL
     cities.unshift(QUERY);
@@ -161,7 +171,7 @@ $("#searchBtn").on("click", function () {
         $("#temp5").html(forecastRes.list[33].main.temp);
         $("#humid5").html(forecastRes.list[33].main.humidity);
     }); 
-});
+}
 
 // function to create a user search history and limit it to 5 to appear on the page
 function saveSearch() {
@@ -169,7 +179,7 @@ function saveSearch() {
     //clear the UL that will hold all ne <li> elements before appending
     $("#city-list").empty();
     for (i = 0; i < cities.length; i++) {
-      newCity = $("<li></li>").append(cities[i]).addClass("list-group-item");
+      newCity = $("<li></li>").append(cities[i]).addClass("list-group-item searches");
       $("#city-list").append(newCity); 
       cities = cities.slice(0,5);
     }
@@ -177,3 +187,11 @@ function saveSearch() {
     //clear user's input area
     $("#search-input").val("");
   }
+
+  $("#city-list").on("click", ".searches", function () {
+      console.log($(this).text());
+      var queryBtn = $(this).text();
+      getData(queryBtn);
+  })
+
+  init();
