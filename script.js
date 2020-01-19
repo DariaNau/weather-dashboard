@@ -1,6 +1,7 @@
 var currentDate = moment().format('L');
 var API_KEY = "&appid=86945d052a2d837006278947c1238951";
 var cities = JSON.parse(localStorage.getItem('cities')) || [];
+var INP = $("#search-input").text();
 // console.log(cities)
 
 //if enter is pressed by user trigger the on(click) function
@@ -14,27 +15,25 @@ $("#search-input").keyup(function(event) {
 
         // Trigger the button element with a click
         $("#searchBtn").click();
-
-
     }
 });
 
 //function to obtain latitude and logitude information of the UV index and add it to the UVurl
-
 function formatUVQuery(lon, lat) {
     return "&lon=" + lon + "&lat=" + lat
 }
 
-// saveSearch();
+saveSearch();
 
 //on click function declaration - starts 4 ajax calls
 $("#searchBtn").on("click", function () {
     var QUERY = $("#search-input").val().trim();
     getData(QUERY)
+    $("#search-input").attr("placeholder", "Try again")
 });
 
 // to save data on the page 
-function init() {
+function init() {;
     var query = localStorage.getItem('query') || 'Atlanta';
     getData(query);
 }
@@ -182,7 +181,7 @@ function saveSearch() {
     //clear the UL that will hold all ne <li> elements before appending
     $("#city-list").empty();
     for (i = 0; i < cities.length; i++) {
-      newCity = $("<li></li>").append(cities[i]).addClass("list-group-item searches");
+      newCity = $("<button></button>").append(cities[i]).addClass("btn btn-light m-1 searches");
       $("#city-list").append(newCity); 
       cities = cities.slice(0,5);
     }
@@ -200,3 +199,9 @@ function saveSearch() {
   })
 
   init();
+
+  function validateINP(){
+    if (INP == ""){
+        alert("Please enter a city name");
+       
+}}
