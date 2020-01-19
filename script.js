@@ -14,6 +14,8 @@ $("#search-input").keyup(function(event) {
 
         // Trigger the button element with a click
         $("#searchBtn").click();
+
+
     }
 });
 
@@ -23,48 +25,52 @@ function formatUVQuery(lon, lat) {
     return "&lon=" + lon + "&lat=" + lat
 }
 
-saveSearch();
+// saveSearch();
 
-//on click function declaration - 4 ajax calls
+//on click function declaration - starts 4 ajax calls
 $("#searchBtn").on("click", function () {
     var QUERY = $("#search-input").val().trim();
     getData(QUERY)
 });
 
+// to save data on the page 
 function init() {
     var query = localStorage.getItem('query') || 'Atlanta';
     getData(query);
 }
 
 function getData (QUERY) {
+
+    // set user's input value to local storage
     localStorage.setItem('query', QUERY);
 
+    // set date using moments.js 
     $(".date").text(currentDate);
+
+    // create variables that will hold urls for ajax calls
     var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=";
     var uvURL = "http://api.openweathermap.org/data/2.5/uvi?";
 
     //create a var that will hold units parameter to get rid of default Kelvin
     var unitsURL = "&units=imperial";
     
-    // // Grab text the user typed into the search input
-    
-//LS: unshift method is used (instead of push) for each new search inputs to insure that new input is added from the top and not the buttom of the UL
+//LS-1: unshift method is used (instead of push) for each new search inputs to insure that new input is added from the top and not the buttom of the UL
     cities.unshift(QUERY);
     // console.log(cities)
     
-//LS: set and stringify cities input
+//LS-2: set and stringify cities input
     localStorage.setItem("cities", JSON.stringify(cities))
+
+//LS-3: run save search function that will push new inputs into cities array
     saveSearch();
     
     //ajax call to update first 3 weather conditions
-    
     $.ajax({
         url: weatherURL + QUERY + unitsURL + API_KEY,
         method: "GET"
     }).then(function (weatherRes) {
         
         // UPDATE MAIN WEATHER CARD
-        // console.log(weatherRes);
         $("#cityName").html(weatherRes.name);
         $("#temp").html(weatherRes.main.temp);
         $("#humid").html(weatherRes.main.humidity);
@@ -77,8 +83,7 @@ function getData (QUERY) {
         }).then(function (uvRes) {
             
         // UPDATE UV INDEX FOR MAIN WEATHER CARD
-            $("#uv").append(uvRes.value);
-            // console.log(uvRes);
+            $("#uv").html(uvRes.value);
         });
         
         var iconPath = weatherRes.weather[0].icon;
@@ -99,11 +104,9 @@ function getData (QUERY) {
     }).then(function (forecastRes) {
 
         // UPDATE FORECAST CARDS
-        // console.log(forecastRes); 
-
     //DAY 1
         var dateOne = moment().add(1, 'days').format('L');      
-        $("#date1").append(dateOne);
+        $("#date1").html(dateOne);
 
         var icon5dayPath1 = forecastRes.list[2].weather[0].icon;
         var icon5dayURL1 = "https://openweathermap.org/img/wn/"+ icon5dayPath1 + "@2x.png";
@@ -117,7 +120,7 @@ function getData (QUERY) {
 
     //DAY 2
         var dateTwo = moment().add(2, 'days').format('L');
-        $("#date2").append(dateTwo);
+        $("#date2").html(dateTwo);
         
         var icon5dayPath2 = forecastRes.list[9].weather[0].icon;
         var icon5dayURL2 = "https://openweathermap.org/img/wn/"+ icon5dayPath2 + "@2x.png";
@@ -131,7 +134,7 @@ function getData (QUERY) {
 
     //DAY 3
         var dateThree = moment().add(3, 'days').format('L');      
-        $("#date3").append(dateThree);
+        $("#date3").html(dateThree);
 
         var icon5dayPath3 = forecastRes.list[17].weather[0].icon;
         var icon5dayURL3 = "https://openweathermap.org/img/wn/"+ icon5dayPath3 + "@2x.png";
@@ -145,7 +148,7 @@ function getData (QUERY) {
 
     //DAY 4
         var dateFour = moment().add(4, 'days').format('L');      
-        $("#date4").append(dateFour);
+        $("#date4").html(dateFour);
         
         var icon5dayPath4 = forecastRes.list[25].weather[0].icon;
         var icon5dayURL4 = "https://openweathermap.org/img/wn/"+ icon5dayPath4 + "@2x.png";
@@ -159,7 +162,7 @@ function getData (QUERY) {
 
     //DAY 5
         var dateFive = moment().add(5, 'days').format('L');      
-        $("#date5").append(dateFive);
+        $("#date5").html(dateFive);
 
         var icon5dayPath5 = forecastRes.list[33].weather[0].icon;
         var icon5dayURL5 = "https://openweathermap.org/img/wn/"+ icon5dayPath5 + "@2x.png";
@@ -188,8 +191,10 @@ function saveSearch() {
     $("#search-input").val("");
   }
 
+  // on click event for every new city button created run getData function in accordance with user's search
+  
   $("#city-list").on("click", ".searches", function () {
-      console.log($(this).text());
+    //   console.log($(this).text());
       var queryBtn = $(this).text();
       getData(queryBtn);
   })
