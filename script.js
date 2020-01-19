@@ -23,7 +23,7 @@ function formatUVQuery(lon, lat) {
     return "&lon=" + lon + "&lat=" + lat
 }
 
-saveSearch();
+// saveSearch();
 
 //on click function declaration - starts 4 ajax calls
 $("#searchBtn").on("click", function () {
@@ -199,9 +199,3 @@ function saveSearch() {
   })
 
   init();
-
-  function validateINP(){
-    if (INP == ""){
-        alert("Please enter a city name");
-       
-}}
