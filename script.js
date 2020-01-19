@@ -47,8 +47,8 @@ function getData (QUERY) {
     $(".date").text(currentDate);
 
     // create variables that will hold urls for ajax calls
-    var weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=";
-    var uvURL = "http://api.openweathermap.org/data/2.5/uvi?";
+    var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
+    var uvURL = "https://api.openweathermap.org/data/2.5/uvi?";
 
     //create a var that will hold units parameter to get rid of default Kelvin
     var unitsURL = "&units=imperial";
@@ -94,7 +94,7 @@ function getData (QUERY) {
             $("#icon").html(IMG1);
     });
 
-    var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?q=";
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
     // ajax call to get 5-day forecast data
     $.ajax({
