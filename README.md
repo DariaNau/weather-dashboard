@@ -11,8 +11,6 @@ Please visit the deployed project at: https://darianau.github.io/weather-dashboa
 ## Usage
 Introduction to server-side APIs. See the detailed instructions below.
 
-![Image of the App](03-JavaScript-homework-demo.png)
-
 ### Instructions
 
 The following under current weather conditions are displayed:
