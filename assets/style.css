@@ -41,5 +41,11 @@ h5 {
       font-weight: bold;
 }
 
+@media (max-width: 576px){
+    .searches{
+        display: none;
+    }
+}
+
 
   

@@ -25,11 +25,11 @@
     <div class="container">
         <div class="row">
             <div class="col-3">
-                <p id="instruction" class="btn btn-light" style="width: 100%;"> Search for a city: </p>
                 <div class="input-group mb-3" style="width: 100%;">
+                    <p id="instruction" class="rounded li btn-light p-1" style="width: 100%;">Search for a city: </p>
                     <input id="search-input" type="city" name="city" class="form-control" placeholder="e.g. Atlanta" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button id="searchBtn" class="btn btn-light" type="button">Search</button>
+                        <button id="searchBtn" class="btn btn-light" style="background-color: slategrey; color: floralwhite;" type="button">Search</button>
                     </div>
                 </div>
                 <ul id="city-list" class="list-group list-group-flush">
@@ -47,7 +47,7 @@
                         <li class="list-group-item">Humidity: <span id="humid"></span> %</li>
                         <li class="list-group-item">Wind Speed: <span id="wind"></span> mph</li>
                         <li class="list-group-item">UV Index: <span id="uv"
-                                class=" rounded border border-danger bg-danger text-white"></span></li>
+                                class="rounded border border-danger bg-danger text-white"></span></li>
                     </ul>
                 </div>
             </div>

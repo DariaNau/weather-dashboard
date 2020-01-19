@@ -1,7 +1,6 @@
 var currentDate = moment().format('L');
 var API_KEY = "&appid=86945d052a2d837006278947c1238951";
 var cities = JSON.parse(localStorage.getItem('cities')) || [];
-var INP = $("#search-input").text();
 // console.log(cities)
 
 //if enter is pressed by user trigger the on(click) function
@@ -53,22 +52,22 @@ function getData (QUERY) {
     //create a var that will hold units parameter to get rid of default Kelvin
     var unitsURL = "&units=imperial";
     
-//LS-1: unshift method is used (instead of push) for each new search inputs to insure that new input is added from the top and not the buttom of the UL
+    //LS-1: unshift method is used (instead of push) for each new search inputs to insure that new input is added from the top and not the buttom of the UL
     cities.unshift(QUERY);
     // console.log(cities)
     
-//LS-2: set and stringify cities input
+    //LS-2: set and stringify cities input
     localStorage.setItem("cities", JSON.stringify(cities))
-
-//LS-3: run save search function that will push new inputs into cities array
-    saveSearch();
+    
+    //LS-3: run save search function that will push new inputs into cities array
+        saveSearch();
     
     //ajax call to update first 3 weather conditions
     $.ajax({
         url: weatherURL + QUERY + unitsURL + API_KEY,
         method: "GET"
     }).then(function (weatherRes) {
-        
+
         // UPDATE MAIN WEATHER CARD
         $("#cityName").html(weatherRes.name);
         $("#temp").html(weatherRes.main.temp);
