@@ -33,7 +33,6 @@ $("#searchBtn").on("click", function () {
 
 // to save data on the page 
 function init() {
-    ;
     var query = localStorage.getItem('query') || 'Atlanta';
     getData(query);
 }
@@ -68,6 +67,11 @@ function getData(QUERY) {
         url: weatherURL + QUERY + unitsURL + API_KEY,
         method: "GET"
         // success: getData(queryBtn)
+        // statusCode: {
+        //     404: function() {
+        //       alert( "page not found" );
+        //     }
+        //   }
     }).then(function (weatherRes) {
 
         // UPDATE MAIN WEATHER CARD

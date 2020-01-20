@@ -16,7 +16,7 @@ body {
 
 #search-input {
     background-image: linear-gradient(to right, white, lightgray, blanchedalmond);
-    opacity: 90%;
+    opacity: 95%;
 }
 
 .card,
@@ -25,8 +25,9 @@ body {
 .list-group-item {
     /* background-image: linear-gradient(to right, gray); */
     background-color: grey;
-    opacity: 93%;
+    opacity: 97%;
     box-shadow: -9px 8px 3px rgba(0, 0, 0, 0.197);
+    color: black
 }
 
 .searches {
@@ -41,6 +42,10 @@ h5 {
     font-size: 140%;
     color:whitesmoke;
     font-weight: bold;
+}
+
+.card-title{
+    font-size: 28px;
 }
 
 @media (max-width: 576px) {
