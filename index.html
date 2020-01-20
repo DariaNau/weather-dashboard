@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -13,36 +13,40 @@
 
     <title>Weather Dashboard</title>
 </head>
+
 <body>
 
-    <div class="jumbotron jumbotron-fluid" style="background-image: linear-gradient(to right, white, grey, blanchedalmond); opacity: 80%;">
-        <div class="container">
+    <div class="jumbotron jumbotron-fluid"
+        style="background-image: linear-gradient(to right, white, grey, blanchedalmond); opacity: 80%;">
+        <div class="container" id="nav">
             <h1 class="display-4">Weather Dashboard</h1>
-            <p class="lead" style="font-weight: bold;">`` Climate is what we expect, weather is what we get. `` ~ Mark Twain.</p>
+            <p class="lead" style="font-weight: bold;">`` Climate is what we expect, weather is what we get. `` ~ Mark
+                Twain.</p>
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-3">
+    <div class="container" id=" main">
+        <div class="row mb-2">
+            <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
                 <div class="input-group mb-3" style="width: 100%;">
-                    <p id="instruction" class="rounded li btn-light p-1" style="width: 100%;">Search for a city: </p>
-                    <input id="search-input" type="city" name="city" class="form-control" placeholder="e.g. Atlanta" aria-describedby="basic-addon2">
+                    <input id="search-input" type="city" name="city" class="form-control"
+                        placeholder="Please enter a city" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button id="searchBtn" class="btn btn-light" style="background-color: slategrey; color: floralwhite;" type="button">Search</button>
+                        <button id="searchBtn" class="btn btn-light"
+                            style="background-color: slategrey; color: floralwhite;" type="button">Search</button>
                     </div>
                 </div>
                 <ul id="city-list" class="list-group list-group-flush">
                 </ul>
             </div>
 
-            <div class="col-9">
+            <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title"><span id="cityName"></span> <span class="date"></span> <span
                                 id="icon"></span></h5>
                     </div>
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush mb-2">
                         <li class="list-group-item">Temperature: <span id="temp"></span> °F</li>
                         <li class="list-group-item">Humidity: <span id="humid"></span> %</li>
                         <li class="list-group-item">Wind Speed: <span id="wind"></span> mph</li>
@@ -54,12 +58,12 @@
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
+    <div class="container" id=" main">
+        <div class="row mb-1">
             <div class="col-3">
             </div>
-        
-            <div class="col-9">
+
+            <div class="col-sm-12 col-md-9 col-lg-9 col-xl-9">
                 <div class="card mb-5">
                     <div class="card-body">
                         <h5 class="card-title">5-day Forecast:</h5>
@@ -68,9 +72,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 id="date1" class="card-title"></h5>
-                                <li class="list-group-item"><span id="icon1" ></span></li>
-                                <li class="list-group-item">Temperature: <br><span id="temp1" ></span> °F</li>
-                                <li class="list-group-item">Humidity: <br><span id="humid1" ></span> %</li>
+                                <li class="list-group-item"><span id="icon1"></span></li>
+                                <li class="list-group-item">Temperature: <br><span id="temp1"></span> °F</li>
+                                <li class="list-group-item">Humidity: <br><span id="humid1"></span> %</li>
                             </div>
                         </div>
 
@@ -78,8 +82,8 @@
                             <div class="card-body">
                                 <h5 id="date2" class="card-title"></h5>
                                 <li id="icon2" class="list-group-item"></li>
-                                <li class="list-group-item">Temperature: <br><span id="temp2" ></span> °F</li>
-                                <li class="list-group-item">Humidity: <br><span id="humid2" ></span> %</li>
+                                <li class="list-group-item">Temperature: <br><span id="temp2"></span> °F</li>
+                                <li class="list-group-item">Humidity: <br><span id="humid2"></span> %</li>
                             </div>
                         </div>
 
@@ -87,8 +91,8 @@
                             <div class="card-body">
                                 <h5 id="date3" class="card-title"></h5>
                                 <li id="icon3" class="list-group-item"></li>
-                                <li class="list-group-item">Temperature: <br><span id="temp3" ></span> °F</li>
-                                <li class="list-group-item">Humidity: <br><span id="humid3" ></span> %</li>
+                                <li class="list-group-item">Temperature: <br><span id="temp3"></span> °F</li>
+                                <li class="list-group-item">Humidity: <br><span id="humid3"></span> %</li>
                             </div>
                         </div>
 
@@ -96,8 +100,8 @@
                             <div class="card-body">
                                 <h5 id="date4" class="card-title"></h5>
                                 <li id="icon4" class="list-group-item"></li>
-                                <li class="list-group-item">Temperature: <br><span id="temp4" ></span> °F</li>
-                                <li class="list-group-item">Humidity: <br><span id="humid4" ></span> %</li>
+                                <li class="list-group-item">Temperature: <br><span id="temp4"></span> °F</li>
+                                <li class="list-group-item">Humidity: <br><span id="humid4"></span> %</li>
                             </div>
                         </div>
 
@@ -105,8 +109,8 @@
                             <div class="card-body">
                                 <h5 id="date5" class="card-title"></h5>
                                 <li id="icon5" class="list-group-item"></li>
-                                <li class="list-group-item">Temperature: <br><span id="temp5" ></span> °F</li>
-                                <li class="list-group-item">Humidity: <br><span id="humid5" ></span> %</li>
+                                <li class="list-group-item">Temperature: <br><span id="temp5"></span> °F</li>
+                                <li class="list-group-item">Humidity: <br><span id="humid5"></span> %</li>
                             </div>
                         </div>
                     </div>
@@ -116,9 +120,10 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script defer src="script.js"></script>
 
 </body>
+
 </html>

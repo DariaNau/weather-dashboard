@@ -1,6 +1,7 @@
-html, body {
+html,
+body {
     font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
-    background: url(bg.jfif) no-repeat center center fixed; 
+    background: url(bg.jfif) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -15,20 +16,21 @@ html, body {
 
 #search-input {
     background-image: linear-gradient(to right, white, lightgray, blanchedalmond);
-    opacity: 70%;
+    opacity: 90%;
 }
 
-#instruction {
-    font-weight: bolder;
-    color: darkslategray;
-    margin: 1% auto;
-}
-
-.card, .searches, .card-body, .list-group-item, #instruction {
-    background-image: linear-gradient(to right, lightgray, blanchedalmond);
+.card,
+.searches,
+.card-body,
+.list-group-item {
+    /* background-image: linear-gradient(to right, gray); */
+    background-color: grey;
     opacity: 93%;
-    background-color: lightgray;
     box-shadow: -9px 8px 3px rgba(0, 0, 0, 0.197);
+}
+
+.searches {
+    color:whitesmoke;
 }
 
 #uv {
@@ -36,16 +38,22 @@ html, body {
 }
 
 h5 {
-      font-size: 140%;
-      color:darkslategray;
-      font-weight: bold;
+    font-size: 140%;
+    color:whitesmoke;
+    font-weight: bold;
 }
 
-@media (max-width: 576px){
-    .searches{
-        display: none;
+
+
+@media (max-width: 576px) {
+
+    #nav,
+    .card-body,
+    .list-group {
+        text-align: center;
+    }
+
+    .lead {
+        font-size: 85% !important;
     }
 }
-
-
-  

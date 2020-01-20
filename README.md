@@ -14,20 +14,20 @@ Introduction to server-side APIs. See the detailed instructions below.
 ### Instructions
 
 The following under current weather conditions are displayed:
-1. City
-2. Date
-3. Icon image (visual representation of weather conditions)
-4. Temperature
-5. Humidity
-6. Wind speed
-7. UV index
+- City
+- Date
+- Icon image (visual representation of weather conditions)
+- Temperature
+- Humidity
+- Wind speed
+- UV index
 A search history is included so that users can access their past search terms. Clicking on the city name performs a new search that returns current and future conditions for that city.
 
 A 5-Day Forecast below the current weather conditions is also included. Each day for the 5-Day Forecast displays the following:
-1. Date
-2. Icon image (visual representation of weather conditions)
-3. Temperature
-4. Humidity
+- Date
+- Icon image (visual representation of weather conditions)
+- Temperature
+- Humidity
 
 Multiple functions created within the application to handle the different parts of the dashboard:
 
