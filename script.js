@@ -26,7 +26,7 @@ function formatUVQuery(lon, lat) {
 $("#searchBtn").on("click", function () {
     var QUERY = $("#search-input").val().trim();
     getData(QUERY);
-    $("#search-input").attr("placeholder", "Have another city in mind?");
+    $("#search-input").attr("placeholder", "Enter another city");
 
     //LS-1: unshift method is used (instead of push) for each new search inputs to insure that new input is added from the top and not the buttom of the UL
     cities.unshift(QUERY);
