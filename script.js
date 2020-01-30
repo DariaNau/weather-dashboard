@@ -22,25 +22,33 @@ function formatUVQuery(lon, lat) {
     return "&lon=" + lon + "&lat=" + lat
 }
 
-// saveSearch();
-
 //on click function declaration - starts 4 ajax calls
 $("#searchBtn").on("click", function () {
     var QUERY = $("#search-input").val().trim();
     getData(QUERY);
     $("#search-input").attr("placeholder", "Have another city in mind?");
+
+    //LS-1: unshift method is used (instead of push) for each new search inputs to insure that new input is added from the top and not the buttom of the UL
+    cities.unshift(QUERY);
+    // console.log(cities)
+    
+    //LS-2: set and stringify cities input
+    localStorage.setItem("cities", JSON.stringify(cities))
+    
+    renderButons();
 });
 
 // to save data on the page 
 function init() {
-    var query = localStorage.getItem('query') || 'Atlanta';
+    var query = localStorage.getItem('city') || 'Atlanta';
     getData(query);
+    renderButons();
 }
 
 function getData(QUERY) {
 
-    // set user's input value to local storage
-    localStorage.setItem('query', QUERY);
+    // run save search function that will push new inputs into cities array
+    saveSearch(QUERY);
 
     // set date using moments.js 
     $(".date").text(currentDate);
@@ -50,17 +58,7 @@ function getData(QUERY) {
     var uvURL = "https://api.openweathermap.org/data/2.5/uvi?";
 
     //create a var that will hold units parameter to get rid of default Kelvin
-    var unitsURL = "&units=imperial";
-
-    //LS-1: unshift method is used (instead of push) for each new search inputs to insure that new input is added from the top and not the buttom of the UL
-    cities.unshift(QUERY);
-    // console.log(cities)
-
-    //LS-2: set and stringify cities input
-    localStorage.setItem("cities", JSON.stringify(cities))
-
-    //LS-3: run save search function that will push new inputs into cities array
-    saveSearch();
+    var unitsURL = "&units=imperial"; 
 
     //ajax call to update first 3 weather conditions
     $.ajax({
@@ -181,7 +179,22 @@ function getData(QUERY) {
 }
 
 // function to create a user search history and limit it to 5 to appear on the page
-function saveSearch() {
+function saveSearch(city) {
+
+    localStorage.setItem('city', city);
+}
+
+// on click event for every new city button created run getData function in accordance with user's search
+$("#city-list").on("click", ".searches", function () {
+    //   console.log($(this).text());
+    var queryBtn = $(this).text();
+    getData(queryBtn);
+    saveSearch(queryBtn);
+})
+
+init();
+
+function renderButons() {
 
     //clear the UL that will hold all ne <li> elements before appending
     $("#city-list").empty();
@@ -194,12 +207,3 @@ function saveSearch() {
     //clear user's input area
     $("#search-input").val("");
 }
-
-// on click event for every new city button created run getData function in accordance with user's search
-$("#city-list").on("click", ".searches", function () {
-    //   console.log($(this).text());
-    var queryBtn = $(this).text();
-    getData(queryBtn);
-})
-
-init();
